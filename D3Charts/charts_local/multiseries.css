@@ -1,0 +1,21 @@
+body {
+  font: 10px verdana;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #333;
+}
+
+.grid .tick {
+    stroke: lightgrey;
+    opacity: 0.7;
+}
+.grid path {
+    stroke-width: 0;
+}
+.line {
+  fill: none; 
+  stroke: steelblue;
+  stroke-width: 2.5px;
+}

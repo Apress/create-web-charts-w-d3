@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+	<TITLE>Series selections with controls</TITLE>
+<meta charset="utf-8"> 
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="./multiseries.js"></script>
+<link rel="stylesheet" href="./multiseries.css" />
+<style>
+li {
+    font-family: "Verdana";
+    font-size: 16;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px #555555;
+    margin: 3px;
+	list-style: none;
+}
+</style>
+<script>
+$(document).ready(function(){
+var series = 3;
+d3.select("#myChart").selectAll("svg").remove();
+draw_multiseries("#myChart",400,400,series);
+
+$("input[type=radio][name=dataSeries]").attr("checked", false);
+$("input[type=radio][name=dataSeries][value=3]").attr("checked", true);
+  
+$("input[type=radio][name=dataSeries]").change(function(){ 
+        series = parseInt($(this).val());
+        console.log(series);
+        d3.select("#myChart").selectAll("svg").remove();
+        draw_multiseries("#myChart",400,400,series);
+});
+});
+</script>
+</HEAD>	
+<BODY>
+<div id="myChart"></div>
+<table>
+<tr>
+  <td>
+    <div>
+       <ul>
+	<li><input name="dataSeries" value="0" type="radio" checked />Europe</li>
+	<li><input name="dataSeries" value="1" type="radio" />Asia</li>
+	<li><input name="dataSeries" value="2" type="radio" />America</li>
+	<li><input name="dataSeries" value="3" type="radio" />All</li>
+      </ul>
+    </div>
+  </td>
+</tr>
+</table>
+</BODY>
+</HTML>

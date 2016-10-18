@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<meta charset="utf-8"> 
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://d3js.org/d3.v3.js"></script>
+<link rel="stylesheet" href="./linechart.css" />
+<script src="./linechart.js"></script>
+<script src="./barchart.js"></script>
+<script src="./piechart.js"></script>
+<style type="text/css">
+.chart-container {
+    border: 1px solid darkblue;
+    padding: 30px 0px 30px 30px;
+    width: 400px;
+    height: 300px;
+}
+
+#chart1 {
+    width: 96%;
+    height: 96%;
+}  
+</style>
+<script class="code" type="text/javascript">
+
+$(document).ready(function(){
+
+  $('div.chart-container').resizable({delay:20});
+  $('div.chart-container').bind('resize', function(event, ui) {
+      d3.select("#chart1").selectAll("svg").remove();
+      draw_linechart("#chart1",ui.size.width, ui.size.height);
+  });
+ // d3.select("#chart1").selectAll("svg").remove();
+  draw_linechart("#chart1",400,300);
+});
+</script>
+</HEAD>	
+<BODY>
+<div id="resizable" class="chart-container">    
+      <div id="chart1"></div>
+</div>
+</BODY>
+</HTML>

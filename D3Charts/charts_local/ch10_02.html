@@ -1,0 +1,138 @@
+<HTML>
+<HEAD>
+<meta charset="utf-8"> 
+<script src="../src/js/jquery-1.9.1.js"></script>
+<link rel="stylesheet" href="../src/css/smoothness/jquery-ui-1.10.3.custom.min.css" />
+<script src="../src/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="../src/d3.v3.js"></script>
+<script src="./multiseries2.js"></script>
+<link rel="stylesheet" href="./multiseries.css" />
+<style>
+li
+{
+	font-family: "Verdana";
+	font-size: 16;
+	font-weight: bold;
+	text-shadow: 1px 2px 2px #555555;
+	margin: 3px;
+	list-style: none;
+}
+#red, #green, #blue
+{
+	float: left;
+	margin: 15px;
+	left: 50px;
+}
+
+#red .ui-slider-range { background: #ef2929; }
+#red .ui-slider-handle { border-color: #ef2929; }
+#green .ui-slider-range { background: #8ae234; }
+#green .ui-slider-handle { border-color: #8ae234; }
+#blue .ui-slider-range { background: #729fcf; }
+#blue .ui-slider-handle { border-color: #729fcf; }
+#slider-text div{
+	/*float:left;*/
+	font-family: "Verdana";
+	font-size: 10px;
+	position: relative;
+	left: 17px;
+}
+
+</style>
+<script>
+$(document).ready(function(){
+
+var colors = ["#ffc87c", "#ffeba8", "#f3b080"];
+var series = 0;
+d3.select("#myChart").selectAll("svg").remove();
+draw_multiseries("#myChart",400,400,series,colors);
+
+$("input[type=radio][name=dataSeries]").attr("checked", false);
+$("input[type=radio][name=dataSeries][value=0]").attr("checked", true);
+  
+$("input[type=radio][name=dataSeries]").change(function(){ 
+        series = parseInt($(this).val());
+        d3.select("#myChart").selectAll("svg").remove();
+        //colors[series] = "#"+col;
+        draw_multiseries("#myChart",400,400,series,colors);
+});
+    
+	function hexFromRGB(r, g, b) {
+		var hex = [
+		r.toString( 16 ),
+		g.toString( 16 ),
+		b.toString( 16 )
+		];
+		$.each( hex, function( nr, val ) {
+			if ( val.length === 1 ) {
+			hex[ nr ] = "0" + val;
+			}
+		});
+		return hex.join( "" ).toUpperCase();
+	};
+	
+	$( "#red, #green, #blue" ).slider({
+		orientation: "vertical",
+		range: "min",
+		max: 255,
+		change: refreshPlot
+	});
+	// set to "#4bb2c5";
+	$( "#red" ).slider( "value", 75 );
+	$( "#green" ).slider( "value", 178 );
+	$( "#blue" ).slider( "value", 197 );
+	
+	function refreshPlot() {
+		var r = $( "#red" ).slider( "value" );
+		var g = $( "#green" ).slider( "value" );
+		var b = $( "#blue" ).slider( "value" );
+		var col = hexFromRGB(r, g, b);
+        d3.select("#myChart").selectAll("svg").remove();
+        colors[series] = "#"+col;
+        draw_multiseries("#myChart",400,400,series,colors);
+	}
+	$("[id=0]").css('top','90px');
+    $("[id=1]").css('top','-20px');
+
+});
+
+</script>
+</HEAD>	
+<BODY>
+<div id="myChart"> </div>
+<br>
+<table>
+<tr>
+  <td>
+    <div>
+       <ul>
+		<li><input name="dataSeries" value="0" type="radio" checked />Europe</li>
+		<li><input name="dataSeries" value="1" type="radio" />Asia</li>
+		<li><input name="dataSeries" value="2" type="radio" />America</li>
+      </ul>
+    </div>
+  </td>
+  <td>
+  	<div id="red">
+  	   <div id="slider-text">
+	       <div id="0">0</div>
+	       <div id="1">255</div>
+	   </div>
+  	</div>
+	<div id="green">
+	   <div id="slider-text">
+	       <div id="0">0</div>
+	       <div id="1">255</div>
+	   </div>
+	</div>
+	<div id="blue">
+	   <div id="slider-text">
+	       <div id="0">0</div>
+	       <div id="1">255</div>
+	   </div>
+	</div>
+  </td>
+</tr>
+</table>
+</BODY>
+</HTML>

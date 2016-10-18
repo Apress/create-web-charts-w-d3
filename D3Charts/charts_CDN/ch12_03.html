@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<meta charset="utf-8"> 
+<script src="http://d3js.org/d3.v3.js"></script>
+</HEAD>	
+<body>
+<script>
+var radius = 250;
+var angle = 360;
+var color = d3.scale.category10();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", 2*radius)
+    .attr("height", 2* radius)
+    .append("g")
+    .attr("transform","translate("+radius + "," + radius + ")");
+  
+var partition = d3.layout.partition()
+    .size([2 * Math.PI, radius]);
+
+var arc = d3.svg.arc()
+    .startAngle(function(d) { return d.x; })
+    .endAngle(function(d) { return d.x + d.dx; })
+    .innerRadius(function(d) { return d.y; })
+    .outerRadius(function(d) { return d.y + d.dy; });
+
+d3.json("tree3.json", function(error, root) {
+	
+  var size = function(d) { return d.size; };		
+  var nodes = partition.value(size).nodes(root);
+  console.log(nodes);
+  var path = svg.datum(root).selectAll("path")
+      .data(nodes)
+      .enter().append("path")
+      .attr("display", function(d) { return d.depth ? null : "none"; }) 
+      .attr("d", arc)
+      .style("stroke", "#fff")
+      .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+      .style("fill-rule", "evenodd");
+  
+});
+</script>
+</body>
+</HTML>

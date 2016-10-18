@@ -1,0 +1,23 @@
+path {
+    stroke: black;
+    stroke-width: 3;
+    fill: none;
+}
+line {
+    stroke: black;
+}
+.xGrids {
+	stroke: lightgray;
+}
+.yGrids {
+	stroke: lightgray;
+}
+text {
+    font-family: Verdana;
+    font-size: 9pt;
+}
+.axisArrow {
+	stroke: black;
+	stroke-width: 1;
+	fill: black; 
+}

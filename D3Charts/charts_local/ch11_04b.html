@@ -1,0 +1,104 @@
+<HTML>
+<HEAD>
+<meta charset="utf-8"> 
+<script src="../src/js/jquery-1.9.1.js"></script>
+<link rel="stylesheet" href="../src/css/smoothness/jquery-ui-1.10.3.custom.min.css" />
+<script src="../src/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="../src/d3.v3.js"></script>
+<link rel="stylesheet" href="./linechart.css" />
+<script src="./linechart.js"></script>
+<script src="./barchart.js"></script>
+<script src="./piechart.js"></script>
+<style type="text/css">
+.chart-container {
+    border: 1px solid darkblue;
+    padding: 30px 0px 30px 30px;
+    width: 300px;
+    height: 200px;
+	position: relative;
+	float: left;
+}
+.chart-container2 {
+    border: 1px solid darkblue;
+    padding: 30px 0px 30px 30px;
+    width: 200px;
+    height: 200px;
+	position: relative;	
+	float: left;
+	margin-left: 20px;
+}
+.chart-container3 {
+    border: 1px solid darkblue;
+    padding: 30px 0px 30px 30px;
+    width: 500px;
+    height: 200px;
+	position: relative;
+	float: left;
+	margin-left: 20px;
+}
+
+#chart1 {
+    width: 96%;
+    height: 96%;
+}  
+#chart2 {
+    width: 96%;
+    height: 96%;
+}  
+#chart3 {
+    width: 96%;
+    height: 96%;
+}  
+</style>
+
+<script class="code" type="text/javascript">
+$(document).ready(function(){
+ 
+  $('div.chart-container').draggable({
+	 cursor: 'move'
+  });
+    $('div.chart-container2').draggable({
+	 cursor: 'move'
+  });
+    $('div.chart-container3').draggable({
+	 cursor: 'move'
+  });
+ 
+  $('div.chart-container').resizable({delay:20});
+  $('div.chart-container').bind('resize', function(event, ui) {
+      d3.select("#chart1").selectAll("svg").remove();
+      draw_linechart("#chart1",ui.size.width, ui.size.height);
+  });
+  
+  $('div.chart-container2').resizable({delay:20});
+  $('div.chart-container2').bind('resize', function(event, ui) {
+      d3.select("#chart2").selectAll("svg").remove();
+      draw_piechart("#chart2",ui.size.width, ui.size.height);
+  });
+  $('div.chart-container3').resizable({delay:20});
+  $('div.chart-container3').bind('resize', function(event, ui) {
+      d3.select("#chart3").selectAll("svg").remove();
+      draw_barchart("#chart3",ui.size.width, ui.size.height);
+  });
+  
+  draw_linechart("#chart1",300,200);
+  draw_piechart("#chart2",200, 200);
+  draw_barchart("#chart3",500,200);
+
+
+});
+
+</script>
+</HEAD>	
+<BODY>
+<div class="chart-container">    
+	  <div id="chart1"></div>
+</div>
+<div class="chart-container2">    
+	  <div id="chart2"></div>
+</div>
+<div class="chart-container3">    
+	  <div id="chart3"></div>
+</div>
+</BODY>
+</HTML>

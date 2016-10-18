@@ -1,0 +1,36 @@
+{
+ "name": "root",
+ "children": [
+ {
+     "name": "parent A",
+     "children": [
+       {"name": "child A1", "size": 25},
+       {"name": "child A2", "size": 31},
+       {"name": "child A3", "size": 11},
+       {"name": "child A4", "size": 21},
+       {"name": "child A5", "size": 44},
+       {"name": "child A6", "size": 22}
+     ]
+ },{
+     "name": "parent B",
+     "children": [
+       {"name": "child B1", "size": 5},
+       {"name": "child B2", "size": 11},
+       {"name": "child B3", "size": 35},
+       {"name": "child B4", "size": 36},
+       {"name": "child B5", "size": 28},
+       {"name": "child B6", "size": 22},
+       {"name": "child B7", "size": 26},
+       {"name": "child B8", "size": 41}
+     ]
+ },{
+    "name": "parent C",
+    "children": [
+       {"name": "child C1", "size": 23},
+       {"name": "child C2", "size": 51},
+       {"name": "child C3", "size": 33},
+       {"name": "child C4", "size": 4}
+     ]
+  }]
+}
+

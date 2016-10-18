@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+<meta charset="utf-8"> 
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://d3js.org/d3.v3.js"></script>
+<link rel="stylesheet" href="./linechart.css" />
+<script src="./linechart.js"></script>
+<script src="./barchart.js"></script>
+<script src="./piechart.js"></script>
+<style type="text/css">
+.ui-accordion {
+  width: 500px;
+  margin: 2em auto;
+}
+.ui-accordion-header {
+  font-size: 12px;
+}
+.ui-accordion-content {
+  font-size: 14px;
+}
+.section {
+  width: 300px;
+  height: 300px;
+  margin-top: 20px;
+  margin-left: 20px;	  
+}
+/*
+.jqplot-target {
+  font-size: 18px;
+}*/
+ol.description {
+  list-style-position: inside;
+  font-size:15px;
+  margin:1.5em auto;
+  padding:0 15px;
+  width:600px;
+}
+</style>
+<script src="./chXX_01d.js"></script>
+<script src="./chXX_01e.js"></script>
+<script src="./chXX_01f.js"></script>
+<script class="code" type="text/javascript">
+$(document).ready(function(){
+
+$("#accordion").accordion({ event: "mouseover" });
+draw_linechart("#chart1",400,300); 
+draw_barchart("#chart2",400,300); 
+draw_piechart("#chart3",400,300); 
+
+});
+
+</script>
+</HEAD>	
+<BODY>
+<div id="accordion" style="margin-top:50px"> 
+  <h3><a href="#">Section 1</a></h3>
+  <div>
+    <p>This is the bar chart</p>
+    <div id="chart1"></div>
+  </div>
+  
+  <h3><a href="#">Section 2</a></h3>
+  <div>
+    <p>This is the multiseries line chart</p>
+    <div class="section" id="chart2"></div>
+  </div>
+
+  <h3><a href="#">Section 3</a></h3>
+  <div>
+    <p>This is the pie chart</p>
+    <div class="section" id="chart3"></div>
+  </div>
+</div>
+</BODY>
+</HTML>

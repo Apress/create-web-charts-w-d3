@@ -1,0 +1,96 @@
+<HTML>
+<HEAD>
+	<TITLE>Series selections with controls</TITLE>
+<meta charset="utf-8"> 
+<script src="../src/js/jquery-1.9.1.js"></script>
+<script src="../src/d3.v3.js"></script>
+<script src="./multiseries.js"></script>
+<link rel="stylesheet" href="./multiseries.css" />
+<style>
+li
+{
+    font-family: "Verdana";
+    font-size: 16;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px #555555;
+    margin: 3px;
+	list-style: none;
+}
+</style>
+<script>
+$(document).ready(function(){
+
+ var series = [true,true,true];
+ d3.select("#myChart").selectAll("svg").remove();
+ draw_multiseries("#myChart",400,400,series);
+ 
+  $("input[type=checkbox][name=0]").change(function(){
+        if(this.checked){
+        	series[0] = true;
+	    }else{
+            series[0] = false;
+	    }
+	    d3.select("#myChart").selectAll("svg").remove();
+	    draw_multiseries("#myChart",400,400,series);
+  });
+  $("input[type=checkbox][name=1]").change(function(){
+        if(this.checked){
+        	series[1] = true;
+	    }else{
+            series[1] = false;
+	    }
+	    d3.select("#myChart").selectAll("svg").remove();
+	    draw_multiseries("#myChart",400,400,series);
+  });
+  $("input[type=checkbox][name=2]").change(function(){
+        if(this.checked){
+        	series[2] = true;
+	    }else{
+            series[2] = false;
+	    }
+	    d3.select("#myChart").selectAll("svg").remove();
+	    draw_multiseries("#myChart",400,400,series);
+  });
+
+  $("input[type=button][name=checkall]").click(function(){
+	if(this.value == "Check All"){
+        series = [true,true,true];
+ 	    $("input[type=checkbox][name=0]").prop("checked", true);
+	    $("input[type=checkbox][name=1]").prop("checked", true);
+	    $("input[type=checkbox][name=2]").prop("checked", true);
+	    d3.select("#myChart").selectAll("svg").remove();
+	    draw_multiseries("#myChart",400,400,series);
+        this.value = "Uncheck All";
+        
+    }else{
+        series = [false,false,false];
+        $("input[type=checkbox][name=0]").prop("checked", false);
+	    $("input[type=checkbox][name=1]").prop("checked", false);
+	    $("input[type=checkbox][name=2]").prop("checked", false);
+	    d3.select("#myChart").selectAll("svg").remove();
+	    draw_multiseries("#myChart",400,400,series);
+	    this.value = "Check All";
+    }
+  });
+
+});
+</script>
+</HEAD>	
+<BODY>
+<div id="myChart"> </div>
+<table>
+<tr>
+   <td>
+      <div>
+        <ul>
+          <li><input name="0" type="checkbox" checked />Europe</li>
+          <li><input name="1" type="checkbox" checked />Asia</li>
+          <li><input name="2" type="checkbox" checked />America</li>
+          <li><input type="button" name="checkall" value="Uncheck All"></li>
+        </ul>
+      </div>
+    </td>
+</tr>
+</table>
+</BODY>
+</HTML>
